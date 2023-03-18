@@ -3,6 +3,8 @@
 
 generator client {
   provider = "prisma-client-js"
+  // doing this to avoid npx prisma node 32 bit error
+  `engineType = "binary
 }
 
 datasource db {
