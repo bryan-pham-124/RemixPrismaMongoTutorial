@@ -52,6 +52,8 @@ export async function login({ email, password }: LoginForm) {
   if (!user || !(await bcrypt.compare(password, user.password)))
     return json({ error: `Incorrect login` }, { status: 400 });
 
+  //return 'session created';
+
   return createUserSession(user.id, "/");
 }
 

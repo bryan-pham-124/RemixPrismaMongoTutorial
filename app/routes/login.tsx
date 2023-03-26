@@ -53,9 +53,13 @@ export const action: ActionFunction = async ({ request }) => {
 
     //  If there were any errors, return them
     if (Object.values(errors).some(Boolean))
-        return json({ errors, fields: { email, password, firstName, lastName }, form: action }, { status: 400 });
+         return json({ errors, fields: { email, password, firstName, lastName }, form: action }, { status: 400 });
+
+    
+    
 
     switch (action) {
+        
         case 'login': {
             return await login({ email, password })
         }
@@ -65,7 +69,7 @@ export const action: ActionFunction = async ({ request }) => {
             return await register({ email, password, firstName, lastName })
         }
         default:
-            return json({ error: `Invalid Form Data` }, { status: 400 });
+             return json({ error: `Invalid Form Data` }, { status: 400 });
     }
 }
 

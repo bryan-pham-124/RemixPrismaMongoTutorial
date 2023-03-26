@@ -17,3 +17,36 @@ export const createUser = async (user: RegisterForm) => {
   })
   return { id: newUser.id, email: user.email }
 }
+
+// app/utils/user.server.ts
+
+//...
+
+ 
+
+export const getOtherUsers = async (userId: string) => {
+  return prisma.user.findMany({
+    where: {
+      id: { not: userId },
+    },
+    orderBy: {
+      profile: {
+        firstName: 'asc',
+      },
+    },
+  })
+}
+
+
+// app/utils/user.server.ts
+
+// ...
+
+export const getUserById = async (userId: string) => {
+  return await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  })
+}
+
